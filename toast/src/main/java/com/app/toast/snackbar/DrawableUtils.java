@@ -23,13 +23,15 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.DrawableContainer;
+import android.graphics.drawable.DrawableWrapper;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.InsetDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.ScaleDrawable;
 import android.os.Build;
 import android.util.Log;
-
+import androidx.core.graphics.drawable.WrappedDrawable;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -138,42 +140,29 @@ public class DrawableUtils {
      * there is a known issue in the given drawable's implementation.
      */
     public static boolean canSafelyMutateDrawable(@NonNull Drawable drawable) {
-        if (Build.VERSION.SDK_INT < 15 && drawable instanceof InsetDrawable) {
-            return false;
-        }  else if (Build.VERSION.SDK_INT < 15 && drawable instanceof GradientDrawable) {
-            // GradientDrawable has a bug pre-ICS which results in mutate() resulting
-            // in loss of color
-            return false;
-        } else if (Build.VERSION.SDK_INT < 17 && drawable instanceof LayerDrawable) {
+        if (Build.VERSION.SDK_INT < 17 && drawable instanceof LayerDrawable) {
             return false;
         }
 
         if (drawable instanceof DrawableContainer) {
-            // If we have a DrawableContainer, let's traverse its child array
             final Drawable.ConstantState state = drawable.getConstantState();
             if (state instanceof DrawableContainer.DrawableContainerState) {
-                final DrawableContainer.DrawableContainerState containerState =
-                        (DrawableContainer.DrawableContainerState) state;
-                for (final Drawable child : containerState.getChildren()) {
+                final Drawable[] children = ((DrawableContainer.DrawableContainerState) state).getChildren();
+                for (Drawable child : children) {
                     if (!canSafelyMutateDrawable(child)) {
                         return false;
                     }
                 }
             }
         } else if (drawable instanceof WrappedDrawable) {
-            return canSafelyMutateDrawable(
-                    ((WrappedDrawable) drawable)
-                            .getWrappedDrawable());
-        } else if (drawable instanceof androidx.appcompat.graphics.drawable.DrawableWrapper) {
-            return canSafelyMutateDrawable(
-                    ((androidx.appcompat.graphics.drawable.DrawableWrapper) drawable)
-                            .getWrappedDrawable());
-        } else if (drawable instanceof ScaleDrawable) {
-            return canSafelyMutateDrawable(((ScaleDrawable) drawable).getDrawable());
+            return canSafelyMutateDrawable(((WrappedDrawable) drawable).getWrappedDrawable());
+        } else if (drawable instanceof DrawableWrapper) {
+            return canSafelyMutateDrawable(DrawableCompat.unwrap(drawable));
         }
 
         return true;
     }
+
 
     /**
      * VectorDrawable has an issue on API 21 where it sometimes doesn't create its tint filter.

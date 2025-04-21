@@ -22,9 +22,9 @@ public class JavaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ToastX.with(JavaActivity.this)
                         .text("我是在顶部的")
-                        .backgroundColor(R.color.toast_background_color_config3_succeed)
+                        .backgroundColor(R.color.purple_500)
                         .animationMode(ToastX.ANIM_MODEL_SLIDE)
-                        .textColor(R.color.color_FFFFFF)
+                        .textColor(com.app.toast.R.color.color_FFFFFF)
                         .position(ToastX.POSITION_TOP)
                         .textGravity(Gravity.CENTER)
                         .duration(1000)

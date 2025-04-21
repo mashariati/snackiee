@@ -12,14 +12,14 @@ import com.app.toast.expand.dp
 import com.app.toast.snackbar.SnackBarX
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
-import com.gyf.immersionbar.ImmersionBar
+//import com.gyf.immersionbar.ImmersionBar
 
 class MainActivity : AppCompatActivity() {
     private lateinit var rootView: View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        ImmersionBar.with(this).statusBarDarkFont(true).navigationBarColor(R.color.white).init()
+//        ImmersionBar.with(this).statusBarDarkFont(true).navigationBarColor(R.color.white).init()
         rootView = findViewById(R.id.rootView)
     }
 
@@ -28,9 +28,9 @@ class MainActivity : AppCompatActivity() {
             R.id.topBtn -> {
                 ToastX.with(this)
                     .text("我是在顶部的")
-                    .backgroundColor(R.color.toast_background_color_config3_succeed)
+                    .backgroundColor(com.app.toast.R.color.toast_background_color_config3_succeed)
                     .animationMode(ToastX.ANIM_MODEL_SLIDE)
-                    .textColor(R.color.color_FFFFFF)
+                    .textColor(com.app.toast.R.color.color_FFFFFF)
                     .position(ToastX.POSITION_TOP)
                     .textGravity(Gravity.CENTER)
                     .duration(1000)
@@ -47,8 +47,8 @@ class MainActivity : AppCompatActivity() {
                 ToastX.with(this)
                     .text("我是在底部的")
                     .margin(15.dp, 15.dp)
-                    .backgroundColor(R.color.toast_background_color_config3_succeed)
-                    .textColor(R.color.color_FFFFFF)
+                    .backgroundColor(com.app.toast.R.color.toast_background_color_config3_succeed)
+                    .textColor(com.app.toast.R.color.color_FFFFFF)
                     .position(ToastX.POSITION_BOTTOM)
                     .offset(10.dp)
                     .show()
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 ToastX.with(this)
                     .text("网络已断开，请检查网络")
                     .margin(15.dp, 15.dp)
-                    .backgroundColor(R.color.toast_background_color_config2_warn)
+                    .backgroundColor(com.app.toast.R.color.toast_background_color_config2_warn)
                     .position(ToastX.POSITION_TOP)
                     .offset(30.dp)
                     .show()
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                     .text("数据正在上传中...")
                     .margin(15.dp, 15.dp)
                     .position(ToastX.POSITION_TOP)
-                    .backgroundColor(R.color.toast_background_color_config2_succeed)
+                    .backgroundColor(com.app.toast.R.color.toast_background_color_config2_succeed)
                     .offset(30.dp)
                     .show()
             }
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                     .text("数据提交成功")
                     .margin(15.dp, 15.dp)
                     .position(ToastX.POSITION_TOP)
-                    .backgroundColor(R.color.toast_background_color_config1_succeed)
+                    .backgroundColor(com.app.toast.R.color.toast_background_color_config1_succeed)
                     .offset(30.dp)
                     .show()
             }
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                     .text("数据提交失败，请重试")
                     .margin(15.dp, 15.dp)
                     .position(ToastX.POSITION_TOP)
-                    .backgroundColor(R.color.toast_background_color_config1_error)
+                    .backgroundColor(com.app.toast.R.color.toast_background_color_config1_error)
                     .offset(30.dp)
                     .show()
             }

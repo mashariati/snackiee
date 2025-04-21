@@ -18,6 +18,7 @@ package com.app.toast.snackbar;
 
 import static androidx.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -162,11 +163,13 @@ public class ViewUtils {
     TypedArray a =
         view.getContext()
             .obtainStyledAttributes(attrs, R.styleable.Insets, defStyleAttr, defStyleRes);
-
+    @SuppressLint("PrivateResource")
     final boolean paddingBottomSystemWindowInsets =
         a.getBoolean(R.styleable.Insets_paddingBottomSystemWindowInsets, false);
-    final boolean paddingLeftSystemWindowInsets =
+    @SuppressLint("PrivateResource")
+ final boolean paddingLeftSystemWindowInsets =
         a.getBoolean(R.styleable.Insets_paddingLeftSystemWindowInsets, false);
+    @SuppressLint("PrivateResource")
     final boolean paddingRightSystemWindowInsets =
         a.getBoolean(R.styleable.Insets_paddingRightSystemWindowInsets, false);
 
@@ -332,10 +335,6 @@ public class ViewUtils {
 
   public static void removeOnGlobalLayoutListener(
       @NonNull ViewTreeObserver viewTreeObserver, @NonNull OnGlobalLayoutListener victim) {
-    if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
       viewTreeObserver.removeOnGlobalLayoutListener(victim);
-    } else {
-      viewTreeObserver.removeGlobalOnLayoutListener(victim);
-    }
   }
 }

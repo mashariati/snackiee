@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Base.V14.Theme.MaterialComponents.Bridge" parent="Theme.AppCompat">
+    <style name="Base.V14.Theme.Material3.Bridge" parent="Theme.Material3.DayNight">
         <item name="colorSurface">@color/colorSurface</item>
     </style>
 
 
-    <style name="ThemeOverlay.MaterialComponents.Dark" parent="ThemeOverlay.AppCompat.Dark">
+    <style name="ThemeOverlay.MaterialComponents.Dark" parent="ThemeOverlay.Material3.Dark">
         <item name="colorSurface">@color/colorSurface</item>
         <item name="snackbarStyle">@style/Widget.MaterialComponents.Snackbar</item>
     </style>
@@ -13,9 +13,9 @@
 
     <style name="Widget.MaterialComponents.Snackbar" parent="android:Widget">
         <item name="android:background">@null</item>
-        <item name="android:layout_margin">@dimen/mtrl_snackbar_margin</item>
+        <item name="android:layout_margin">8dp</item>
         <item name="animationMode">fade</item>
-        <item name="backgroundOverlayColorAlpha">@dimen/mtrl_snackbar_background_overlay_color_alpha</item>
-        <item name="actionTextColorAlpha">@dimen/mtrl_snackbar_action_text_color_alpha</item>
+        <item name="backgroundOverlayColorAlpha">.8</item>
+        <item name="actionTextColorAlpha">.5</item>
     </style>
 </resources>

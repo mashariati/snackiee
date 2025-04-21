@@ -9,12 +9,12 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import com.app.toast.R
 import com.app.toast.ToastX.ANIM_MODEL_SLIDE
 import com.app.toast.ToastX.DURATION_SHORT
 import com.app.toast.ToastX.POSITION_BOTTOM
 import com.app.toast.ToastX.POSITION_TOP
 import com.app.toast.expand.dp
+import com.app.toast.R
 import java.text.FieldPosition
 
 class SnackBarX {
